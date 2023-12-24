@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { cn } from "@/lib/utils"
 import { ModalProvider } from "@/components/providers/modal-provider"
+import { SocketProvider } from "@/components/providers/socket-provider"
 
 //12962453-5369-409b-b7e4-301a1c9a3ab2
 
@@ -20,9 +21,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem storageKey="discord-theme">
-            <ModalProvider />
-            {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            storageKey="discord-theme"
+          >
+            <SocketProvider>
+              <ModalProvider />
+              {children}
+            </SocketProvider>
           </ThemeProvider>
         </body>
       </html>
