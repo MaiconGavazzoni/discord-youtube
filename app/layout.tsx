@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider"
 import { cn } from "@/lib/utils"
 import { ModalProvider } from "@/components/providers/modal-provider"
 import { SocketProvider } from "@/components/providers/socket-provider"
+import { QueryProvider } from "@/components/providers/query-provider"
 
 //12962453-5369-409b-b7e4-301a1c9a3ab2
 
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             <SocketProvider>
               <ModalProvider />
-              {children}
+              <QueryProvider>{children}</QueryProvider>
             </SocketProvider>
           </ThemeProvider>
         </body>
